@@ -1,0 +1,17 @@
+#installer crontab
+sudo yum isntall cronie
+#start cron
+sudo systemctl start crond
+#crée un fichier .sh et mettre le script pour afficher hello_world 
+
+#!/bin/bash
+echo hello wolrd
+#ouvrir crontab placer un script qui permet de tourner le script chaque 30sec
+crontab -e
+
+* * * * * sleep 30 &&  /home/ec2-user/hello_word.sh >> /home/ec2-user/hello_world.log 2>&1
+
+#donner l'autorisation au fichier d'etre executer
+chmod o+x fichier.sh
+#afficher le log
+tail -f fichier.log
